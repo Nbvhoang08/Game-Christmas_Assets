@@ -8,11 +8,11 @@ public class Controller : MonoBehaviour
     private bool _isJumping = false;
     private bool _isJumped = false;
 
-    void Update()
+    void FixedUpdate()
     {
-        transform.Translate(speed * Time.deltaTime, 0, 0);
+        transform.Translate(speed * Time.fixedDeltaTime, 0, 0);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             if (!_isOnGround)
             {
@@ -32,7 +32,7 @@ public class Controller : MonoBehaviour
 
         if (_isJumping)
         {
-            GetComponent<Rigidbody2D>().gravityScale = gravityScale * (1 - Time.deltaTime);
+            GetComponent<Rigidbody2D>().gravityScale = gravityScale * (1 - Time.fixedDeltaTime);
         }
         else
         {
